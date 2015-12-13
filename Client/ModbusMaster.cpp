@@ -45,3 +45,9 @@ array< unsigned char >^ ModbusImplMaster::ReadInputRegisters(unsigned __int16 fi
 	bytes[4] = (__int8)count;
 	return bytes;
 }
+
+array< unsigned char >^ ModbusImplMaster::Diagnostic(){
+	array< unsigned char >^ bytes = gcnew array< unsigned char >(1);
+	bytes[0] = 8;
+	return bytes;
+}

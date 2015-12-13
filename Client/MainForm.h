@@ -134,8 +134,8 @@ namespace Client {
 			// 
 			// buttonSend
 			// 
-			this->buttonSend->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Right));
-			this->buttonSend->Location = System::Drawing::Point(206, 103);
+			this->buttonSend->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Bottom | System::Windows::Forms::AnchorStyles::Right));
+			this->buttonSend->Location = System::Drawing::Point(206, 28);
 			this->buttonSend->Name = L"buttonSend";
 			this->buttonSend->Size = System::Drawing::Size(75, 23);
 			this->buttonSend->TabIndex = 4;
@@ -167,7 +167,7 @@ namespace Client {
 			this->splitContainer->Panel2->Controls->Add(this->rx);
 			this->splitContainer->Panel2MinSize = 75;
 			this->splitContainer->Size = System::Drawing::Size(284, 261);
-			this->splitContainer->SplitterDistance = 59;
+			this->splitContainer->SplitterDistance = 56;
 			this->splitContainer->TabIndex = 5;
 			// 
 			// comboBoxFunction
@@ -225,7 +225,7 @@ namespace Client {
 			this->splitContainer1->Panel2->Controls->Add(this->numericUpDownCount);
 			this->splitContainer1->Panel2->Controls->Add(this->label5);
 			this->splitContainer1->Panel2MinSize = 125;
-			this->splitContainer1->Size = System::Drawing::Size(255, 104);
+			this->splitContainer1->Size = System::Drawing::Size(255, 101);
 			this->splitContainer1->SplitterDistance = 126;
 			this->splitContainer1->TabIndex = 9;
 			// 
@@ -297,7 +297,6 @@ namespace Client {
 #pragma endregion
 		private: System::Void MainForm_Load(System::Object^  sender, System::EventArgs^  e) {
 			this->comboBoxComPort->Items->AddRange(FindCOMPortName());
-			this->comboBoxComPort->SelectedIndex = 2;
 
 			this->comboBoxFunction->Items->Add("ReadCoilStatus");
 			this->comboBoxFunction->Items->Add("ReadDiscreteInputs");
@@ -361,6 +360,9 @@ namespace Client {
 			case 3:
 				toWrite = modbus->ReadInputRegisters(Convert::ToInt16(this->numericUpDownFirst->Value), Convert::ToInt16(this->numericUpDownCount->Value));
 				break;
+			case 4:
+				toWrite = modbus->Diagnostic();
+				break;
 			default:
 				break;
 			}
@@ -374,12 +376,15 @@ namespace Client {
 			}
 			else{
 				SerialPort^ sp = (SerialPort^)sender;
-				//String^ data = sp->ReadExisting();
 				array< Byte >^ byteArray = gcnew array< Byte >(sp->BytesToRead);
 				sp->Read(byteArray, 0, sp->BytesToRead);
 				std::stringstream ss;
-				for (int i = 0; i < byteArray->Length; i++){
-					ss << "0x" << std::hex << std::uppercase << std::setfill('0') << std::setw(2) << (int)byteArray[i] << " ";
+				ss << "0x" << std::hex << std::uppercase << std::setfill('0') << std::setw(2) << (int)byteArray[0] << " ";
+				for (int i = 1; i < byteArray->Length; i++){
+					if (byteArray[0] == 8)
+						ss << byteArray[i];
+					else
+						ss << "0x" << std::hex << std::uppercase << std::setfill('0') << std::setw(2) << (int)byteArray[i] << " ";
 				}
 				this->rx->Text = gcnew String(ss.str().c_str());
 			}
