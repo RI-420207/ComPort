@@ -79,17 +79,84 @@
   <ItemGroup>
     <ClCompile Include="COMPort.cpp" />
     <ClCompile Include="MainForm.cpp" />
+    <ClCompile Include="ModbusSlave.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="COMPort.h" />
+    <ClInclude Include="log4cpp\AbortAppender.hh" />
+    <ClInclude Include="log4cpp\Appender.hh" />
+    <ClInclude Include="log4cpp\AppendersFactory.hh" />
+    <ClInclude Include="log4cpp\AppenderSkeleton.hh" />
+    <ClInclude Include="log4cpp\BasicConfigurator.hh" />
+    <ClInclude Include="log4cpp\BasicLayout.hh" />
+    <ClInclude Include="log4cpp\BufferingAppender.hh" />
+    <ClInclude Include="log4cpp\Category.hh" />
+    <ClInclude Include="log4cpp\CategoryStream.hh" />
+    <ClInclude Include="log4cpp\config-MinGW32.h" />
+    <ClInclude Include="log4cpp\config-openvms.h" />
+    <ClInclude Include="log4cpp\config-win32-stlport-boost.h" />
+    <ClInclude Include="log4cpp\config-win32.h" />
+    <ClInclude Include="log4cpp\Configurator.hh" />
+    <ClInclude Include="log4cpp\convenience.h" />
+    <ClInclude Include="log4cpp\DailyRollingFileAppender.hh" />
+    <ClInclude Include="log4cpp\Export.hh" />
+    <ClInclude Include="log4cpp\FactoryParams.hh" />
+    <ClInclude Include="log4cpp\FileAppender.hh" />
+    <ClInclude Include="log4cpp\Filter.hh" />
+    <ClInclude Include="log4cpp\FixedContextCategory.hh" />
+    <ClInclude Include="log4cpp\HierarchyMaintainer.hh" />
+    <ClInclude Include="log4cpp\IdsaAppender.hh" />
+    <ClInclude Include="log4cpp\Layout.hh" />
+    <ClInclude Include="log4cpp\LayoutAppender.hh" />
+    <ClInclude Include="log4cpp\LayoutsFactory.hh" />
+    <ClInclude Include="log4cpp\LevelEvaluator.hh" />
+    <ClInclude Include="log4cpp\LoggingEvent.hh" />
+    <ClInclude Include="log4cpp\Manipulator.hh" />
+    <ClInclude Include="log4cpp\NDC.hh" />
+    <ClInclude Include="log4cpp\NTEventLogAppender.hh" />
+    <ClInclude Include="log4cpp\OstreamAppender.hh" />
+    <ClInclude Include="log4cpp\PassThroughLayout.hh" />
+    <ClInclude Include="log4cpp\PatternLayout.hh" />
+    <ClInclude Include="log4cpp\Portability.hh" />
+    <ClInclude Include="log4cpp\Priority.hh" />
+    <ClInclude Include="log4cpp\PropertyConfigurator.hh" />
+    <ClInclude Include="log4cpp\RemoteSyslogAppender.hh" />
+    <ClInclude Include="log4cpp\RollingFileAppender.hh" />
+    <ClInclude Include="log4cpp\SimpleConfigurator.hh" />
+    <ClInclude Include="log4cpp\SimpleLayout.hh" />
+    <ClInclude Include="log4cpp\SmtpAppender.hh" />
+    <ClInclude Include="log4cpp\StringQueueAppender.hh" />
+    <ClInclude Include="log4cpp\SyslogAppender.hh" />
+    <ClInclude Include="log4cpp\threading\BoostThreads.hh" />
+    <ClInclude Include="log4cpp\threading\DummyThreads.hh" />
+    <ClInclude Include="log4cpp\threading\MSThreads.hh" />
+    <ClInclude Include="log4cpp\threading\OmniThreads.hh" />
+    <ClInclude Include="log4cpp\threading\PThreads.hh" />
+    <ClInclude Include="log4cpp\threading\Threading.hh" />
+    <ClInclude Include="log4cpp\TimeStamp.hh" />
+    <ClInclude Include="log4cpp\TriggeringEventEvaluator.hh" />
+    <ClInclude Include="log4cpp\TriggeringEventEvaluatorFactory.hh" />
+    <ClInclude Include="log4cpp\Win32DebugAppender.hh" />
     <ClInclude Include="MainForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
+    <ClInclude Include="ModbusSlave.h" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.h</DependentUpon>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="log4cpp.dll" />
+    <None Include="log4cpp.exp" />
+    <None Include="log4cpp.odb" />
+    <None Include="log4cpp.properties" />
+    <None Include="log4cpp\threading\Makefile.am" />
+    <None Include="log4cpp\threading\Makefile.in" />
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="log4cpp.lib" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
